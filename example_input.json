@@ -1,0 +1,10 @@
+[
+  {
+    "name": "example_protein_1",
+    "sequence": "MKQLEDKVEELLSKNYHLENEVARLKKLVGER"
+  },
+  {
+    "name": "example_protein_2", 
+    "sequence": "MGSSHHHHHHSSGLVPRGSHMASMTGGQQMGRDLYDDDDKDPSSDIRVQITVNGSYQLDRAGGVKFLAGGLFSYHVNIGKFLLELLTQGVPSDLQVAMLNGSV"
+  }
+]

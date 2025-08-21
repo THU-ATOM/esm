@@ -1,5 +1,49 @@
 # Evolutionary Scale Modeling
 
+## Quick Start with Docker
+
+### 1. Build Docker Image
+```bash
+docker build -t esm-predict .
+```
+
+### 2. Run Structure Prediction
+
+#### Option A: Using the convenience script (Recommended)
+```bash
+# Make the script executable
+chmod +x run_prediction.sh
+
+# Run prediction with any input file location
+./run_prediction.sh <input_json_path> <output_dir> <model_dir>
+```
+
+**Example:**
+```bash
+./run_prediction.sh /path/to/my_proteins.json ./results /data/protein/torch_model/hub
+```
+
+**Features:**
+- Automatically handles file path mounting
+- Maintains proper file ownership (output files owned by current user)
+- Works with input files from any location
+- Creates output directories automatically
+
+#### Option B: Direct Docker command
+```bash
+# Run prediction with GPU support
+docker run --gpus all \
+  -v $(pwd):/workspace \
+  -v /data/protein/torch_model:/data/protein/torch_model \
+  esm-predict \
+  python scripts/predict_structure.py \
+  -i /workspace/example_input.json \
+  -o /workspace/output \
+  -m /data/protein/torch_model/hub
+```
+
+**Note**: The first run will download the ESMFold model (~3GB) to the specified model directory. Subsequent runs will use the cached model.
+
 [![atlas](https://user-images.githubusercontent.com/3605224/199301187-a9e38b3f-71a7-44be-94f4-db0d66143c53.png)](https://esmatlas.com)
 
 ***Update April 2023:*** Code for the two simultaneous preprints on protein design is now released! Code for "Language models generalize beyond natural proteins" is under [examples/lm-design/](examples/lm-design/). Code for "A high-level programming language for generative protein design" is under [examples/protein-programming-language/](examples/protein-programming-language/).
