@@ -60,6 +60,10 @@ EOT
 
 
 ENV TORCH_CUDA_ARCH_LIST="8.0;9.0"
+RUN /usr/local/bin/conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main \
+    && /usr/local/bin/conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r \
+    && /usr/local/bin/conda tos accept --override-channels --channel https://conda.anaconda.org/pytorch \
+    && /usr/local/bin/conda tos accept --override-channels --channel https://conda.anaconda.org/conda-forge
 RUN conda install -y \
     pytorch==1.12.1 \
     torchvision==0.13.1 \
